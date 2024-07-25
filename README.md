@@ -1,2 +1,2 @@
 # CPU-Scheduling-Algorithms
-CPU Scheduling Algorithms in OS
+This Repository contains Code for some common CPU Scheduling Algorithms in OS
