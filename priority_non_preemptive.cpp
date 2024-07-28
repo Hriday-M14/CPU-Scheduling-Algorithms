@@ -141,9 +141,12 @@ int main()
             CurrentTime++;
             continue;
         }
-        // Sorting Processes in Ascending Order of their Priority
+        // Sorting Processes in Descending Order of their Priority
+        // If the Priority for more than 1 Processes came out to be same then one that arrived in ready queue first will be scheduled first
         sort(InReadyQueue.begin(), InReadyQueue.end(), [](Process* P1, Process* P2){
-            return P1->GetPriority() > P2->GetPriority();
+            int priority1 = P1->GetPriority();
+            int priority2 = P2->GetPriority();
+            return (priority1 > priority2 || (priority1 == priority2 && P1->GetArrivalTime() <= P2->GetArrivalTime()));
         });
 
         // Now out of all the Processes in the Ready Queue, only first or the one with Highest priority will get the CPU
