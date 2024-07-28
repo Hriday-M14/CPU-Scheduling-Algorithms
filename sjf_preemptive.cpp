@@ -142,8 +142,12 @@ int main()
             continue;
         }
         // Sorting Processes in Ascending Order of their Remaining Burst Time
+        // If multiple Processes with same remaining Burst Time are in the ready Queue then the one which arrived first will be 
+        // scheduled first
         sort(InReadyQueue.begin(), InReadyQueue.end(), [](Process* P1, Process* P2){
-            return P1->GetRemBurstTime() < P2->GetRemBurstTime();
+            int remburst1 = P1->GetRemBurstTime();
+            int remburst2 = P2->GetRemBurstTime();
+            return (remburst1 < remburst2 || (remburst1 == remburst2 && P1->GetArrivalTime() <= P2->GetArrivalTime()));
         });
 
         // Now out of all the Processes in the Ready Queue, only first will get the CPU 
